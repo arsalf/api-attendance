@@ -18,7 +18,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     public function login(Request $request)
@@ -83,7 +83,7 @@ class AuthController extends Controller
         try {
             // validasi request
             $validator = Validator::make(request()->all(), [
-                'name' => 'required|unique:users',
+                'name' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:6',
             ]);
@@ -101,6 +101,7 @@ class AuthController extends Controller
                 'email' => request('email'),
                 'password' => app('hash')->make(request('password')),
             ]);
+
 
             // // generate token, auto login, atau hanya respon berhasil
             return response()->json(['message' => 'Successfully created user!']);
