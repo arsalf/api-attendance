@@ -14,7 +14,8 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return "<h1>This is a " . ucfirst($router->app->environment()) . " server 🚀 </h1>" . "<p>Version: " . $router->app->version() . "</p>"
+        .  "<p>© Team PKM | 2022</p>";
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
