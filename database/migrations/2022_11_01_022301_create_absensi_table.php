@@ -13,8 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mata_jadwal', function (Blueprint $table) {
+        Schema::create('absensi', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_absensi');
+            $table->string('kode_mahasiswa');
+            $table->string('kode_dosen');
+            $table->string('kode_kelas');
+            $table->string('kode_jurusan');
+            $table->string('kode_matkul');
+            $table->string('nama_ruangan');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -26,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mata_jadwal');
+        Schema::dropIfExists('absensi');
     }
 };

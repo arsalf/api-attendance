@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('dosen', function (Blueprint $table) {
             $table->id();
+            $table->string('nip');
+
+
             $table->timestamps();
         });
     }
