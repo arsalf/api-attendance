@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mata_kuliah', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('kode_mata_kuliah', 5)->autoIncrement(false)->primary();
+            $table->string('nama_mata_kuliah');
         });
     }
 
