@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('dosen_mengajar', function (Blueprint $table) {
             $table->id();
-            $table->id('dosen_id')->autoIncrement(false)->nullable();
-            $table->string('mata_kuliah_kode', 5)->autoIncrement(false)->nullable();
+            $table->id('dosen_id')->autoIncrement(false);
+            $table->string('mata_kuliah_kode', 5)->autoIncrement(false);
+            $table->enum('jenis_mata_kuliah', ['Teori', 'Praktikum']);
             $table->timestamps();
             $table->foreign('dosen_id')->references('id')->on('dosen');
             $table->foreign('mata_kuliah_kode')->references('kode_mata_kuliah')->on('mata_kuliah');

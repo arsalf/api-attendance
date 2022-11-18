@@ -24,6 +24,7 @@ class DosenFactory extends Factory
         return [
             'nip' => $this->faker->unique()->randomNumber(8),
             'nama_dosen' => $this->faker->name,
+            'user_id' => UserFactory::new()->create()->id,
         ];
     }
 }
