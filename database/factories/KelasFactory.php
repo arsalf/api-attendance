@@ -22,16 +22,12 @@ class KelasFactory extends Factory
     public function definition()
     {
         return [
-            // kode_kelas dengan format 3 huruf dan 2 angka
-            'kode_kelas' => $this->faker->regexify('[A-Z]{3}[0-9]{2}'),
-            'nama_kelas' => $this->faker->name,
+            'kode_kelas' => 'KL001',
+            'nama_kelas' => $this->faker->randomElement([
+                '1A', '1B', '2A', '2B', '3A', '3B', '4A', '4B', '5A', '5B', '6A', '6B'
+            ]),
             'prodi_kode' => $this->faker->randomElement([
-                'TID3',
-                'TID4',
-                'TSD3',
-                'TSD4',
-                'TRTU3',
-                'TRTU4'
+                'TID3', 'TID4', 'TSD3', 'TSD4', 'TRTU3', 'TRTU4'
             ]),
         ];
     }

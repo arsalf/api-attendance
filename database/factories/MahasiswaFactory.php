@@ -24,8 +24,9 @@ class MahasiswaFactory extends Factory
         return [
             'nim' => $this->faker->unique()->randomNumber(8),
             'nama_mahasiswa' => $this->faker->name,
-            // ambil kelas kode dari factory kelasFactory
-            'kelas_kode' => KelasFactory::new()->create()->kode_kelas,
+            'kelas_kode' =>  $this->faker->randomElement([
+                'KL001', 'KL002', 'KL003', 'KL004', 'KL005', 'KL006'
+            ]),
         ];
     }
 }

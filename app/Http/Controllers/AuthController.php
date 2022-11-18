@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,7 +54,26 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        // get data user login yang berelasi dengan dosen, mengajar dan mata kuliahnya
+        $user = User::with('dosen')->find(auth()->user()->id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User login',
+            'data' => $user
+        ], 200);
+    }
+
+    public function dosenMengajar()
+    {
+        // get data user login yang berelasi dengan dosen, mengajar dan mata kuliahnya
+        $user = User::with('dosen.mengajar')->find(auth()->user()->id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User login',
+            'data' => $user
+        ], 200);
     }
 
     /**
@@ -83,7 +103,7 @@ class AuthController extends Controller
         try {
             // validasi request
             $validator = Validator::make(request()->all(), [
-                'name' => 'required',
+                'username' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:6',
             ]);
@@ -97,7 +117,7 @@ class AuthController extends Controller
             }
 
             User::create([
-                'name' => request('name'),
+                'username' => request('username'),
                 'email' => request('email'),
                 'password' => app('hash')->make(request('password')),
             ]);
