@@ -26,6 +26,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->post('refresh', 'AuthController@refresh');
         $router->post('me', 'AuthController@me');
     });
+
+    $router->group(['prefix' => 'dosen'], function () use ($router) {
+        $router->get('/', 'DosenController@index');
+        $router->get('/jadwal-dosen-hari-ini', 'DosenController@JadwalDosenHariIni');
+        $router->post('/', 'DosenController@store');
+        $router->put('/{id}', 'DosenController@update');
+        $router->delete('/{id}', 'DosenController@destroy');
+    });
+
     $router->post('dosen/mengajar', 'AuthController@dosenMengajar');
     $router->get('me', ['middleware' => 'auth.jwt', 'uses' => 'AuthController@me']);
 });
