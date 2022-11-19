@@ -27,5 +27,5 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->post('me', 'AuthController@me');
     });
     $router->post('dosen/mengajar', 'AuthController@dosenMengajar');
-    $router->get('user', ['middleware' => 'auth', 'uses' => 'AuthController@user']);
+    $router->get('me', ['middleware' => 'auth.jwt', 'uses' => 'AuthController@me']);
 });

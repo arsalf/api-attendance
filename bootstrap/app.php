@@ -81,6 +81,7 @@ $app->withEloquent();
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
+    'auth.jwt'=>\App\Http\Middleware\JwtMiddleware::class,
 ]);
 
 /*
