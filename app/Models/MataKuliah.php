@@ -20,9 +20,4 @@ class MataKuliah extends Model
     protected $fillable = [
         'kode_mata_kuliah', 'nama_mata_kuliah',
     ];
-
-    public function dosen_mengajar()
-    {
-        return $this->hasMany(DosenMengajar::class, 'mata_kuliah_kode', 'kode_mata_kuliah');
-    }
 }
