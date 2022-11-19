@@ -18,15 +18,11 @@ class DosenMengajar extends Model
     protected $fillable = [
         'dosen_id',
         'mata_kuliah_kode',
+        'jenis_mata_kuliah',
     ];
-
-    public function dosen()
-    {
-        return $this->hasMany(Dosen::class, 'dosen_id', 'id');
-    }
 
     public function mata_kuliah()
     {
-        return $this->hasMany(MataKuliah::class, 'mata_kuliah_kode', 'kode_mata_kuliah');
+        return $this->belongsTo(MataKuliah::class, 'mata_kuliah_kode');
     }
 }

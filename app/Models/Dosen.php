@@ -24,13 +24,23 @@ class Dosen extends Model implements AuthenticatableContract, AuthorizableContra
         'nip', 'user_id', 'nama_dosen',
     ];
 
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class, 'dosen_mengajar_id');
+    }
+
     public function user()
     {
-        return $this->hasOne(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function mengajar()
     {
         return $this->hasMany(DosenMengajar::class, 'dosen_id');
+    }
+
+    public function mata_kuliah()
+    {
+        return $this->belongsToMany(MataKuliah::class, 'dosen_mengajar', 'dosen_id', 'mata_kuliah_kode');
     }
 }
