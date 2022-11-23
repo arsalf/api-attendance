@@ -32,6 +32,7 @@ class DosenMengajarResource extends JsonResource
             'tanggal' => $this->tanggal,
             'jam_mulai' => $this->jam_mulai,
             'jam_selesai' => $this->jam_selesai,
+            'ruangan' => $this->ruangan,
         ];
     }
 }
