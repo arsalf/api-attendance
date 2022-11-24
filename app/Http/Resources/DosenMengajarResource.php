@@ -22,6 +22,7 @@ class DosenMengajarResource extends JsonResource
         // ];
 
         return [
+            'jadwal_id' => $this->id,
             'nama_kelas' => $this->nama_kelas . ' - '. $this->nama_prodi,
             'mata_kuliah' => $this->nama_mata_kuliah,
             'jenis_mata_kuliah' => $this->jenis_mata_kuliah,

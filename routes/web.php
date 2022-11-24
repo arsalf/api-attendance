@@ -36,11 +36,14 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     $router->group(['middleware'=>'auth.jwt', 'prefix' => 'jadwal'], function () use ($router) {
+        $router->post('presensi-hadir-semua', 'JadwalController@presensiHadirSemua');
         $router->get('show/{kode}', 'JadwalController@show');
+        $router->post('presensi/{jadwal}/mahasiswa/{nim}', 'JadwalController@presensi');  
     });
 
     $router->group(['middleware'=>'auth.jwt', 'prefix' => 'mahasiswa'], function () use ($router) {
-        $router->get('list/{kelas}', 'MahasiswaController@list');
+        $router->get('list/{jadwal_id}/{kelas}', 'MahasiswaController@list');
+        $router->get('is-absen-today/{jadwal}/{nim}', 'MahasiswaController@isAbsenToday');
     });
 
     // $router->post('dosen/mengajar', 'AuthController@dosenMengajar');

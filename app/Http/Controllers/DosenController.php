@@ -52,7 +52,7 @@ class DosenController extends Controller
             return response()->json([
                 'message' => 'Tidak ada jadwal hari ini',
                 'data' => []
-            ], 404);
+            ], 200);
         }
 
         // jika dosen ada jadwal maka return jadwal

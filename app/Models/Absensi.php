@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableContract
+class Absensi extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
 
-    protected $table = 'mahasiswa';
+    protected $table = 'Absensi';
 
     /**
      * The attributes that are mass assignable.
@@ -21,13 +21,19 @@ class Mahasiswa extends Model implements AuthenticatableContract, AuthorizableCo
      * @var string[]
      */
     protected $fillable = [
-        'nim', 'nama_mahasiswa', 'kelas_kode',
+        'mahasiswa_nim',
+        'jadwal_id',
+        'status',
+        'keterlambatan',
     ];
 
-    public function absensi()
+    public function mahasiswa()
     {
-        return $this->hasMany(Absensi::class, 'mahasiswa_nim', 'nim');
+        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_nim', 'nim');
     }
 
-    
+    public function jadwal()
+    {
+        return $this->belongsTo(Jadwal::class);
+    }
 }
