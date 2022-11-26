@@ -15,12 +15,11 @@ class MahasiswaController extends Controller
     public function list($jadwal_id, $kelas)
     {
         // list mahasiswa dengan jadwal dan kelas tertentu
-        $data = DB::table('mahasiswa')
-                ->select('mahasiswa.*', 'absensi.status', 'absensi.keterlambatan')
-                ->leftJoin('absensi', 'mahasiswa.nim', '=', 'absensi.mahasiswa_nim')
-                ->where('mahasiswa.kelas_kode', $kelas)
-                ->orWhereIn('absensi.jadwal_id', [$jadwal_id, null])
-                ->get();
+        $data = DB::select('select `mahasiswa`.*, `absensi`.`status`, `absensi`.`keterlambatan` from `mahasiswa` left join (SELECT * FROM `absensi` WHERE `jadwal_id` = ?) AS `absensi` ON `mahasiswa`.`nim` = `absensi`.`mahasiswa_nim` WHERE `mahasiswa`.`kelas_kode` = ?', [$jadwal_id, $kelas]);
+
+        // $query = DB::getQueryLog();
+
+        // dd($data);
 
         // return json
         return response()->json([
