@@ -13,7 +13,7 @@ class Absensi extends Model implements AuthenticatableContract, AuthorizableCont
 {
     use Authenticatable, Authorizable, HasFactory;
 
-    protected $table = 'Absensi';
+    protected $table = 'absensi';
 
     /**
      * The attributes that are mass assignable.
